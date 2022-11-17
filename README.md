@@ -3,7 +3,7 @@ A Simple Toolkit for Data Engineers
 
 ### Installation
 ```
-pip install 
+pip install simpledataengineeringtoolkit
 ```
 
 ### Get started
