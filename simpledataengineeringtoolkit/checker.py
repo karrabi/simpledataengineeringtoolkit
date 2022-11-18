@@ -125,6 +125,7 @@ class ValueChecker:
     def CheckFloatValues(self, column:str, change_type_to_float:bool, 
                               remove_thousands_seperator:bool, 
                               nan_values_set_to:NanValues):
+        msg=''
         
         if not isinstance(nan_values_set_to, NanValues):
             raise TypeError('nan_values_set_to must be an instance of NanValues Enum')
@@ -163,6 +164,7 @@ class ValueChecker:
         """
         if not isinstance(nan_values_set_to, NanValues):
             raise TypeError('nan_values_set_to must be an instance of NanValues Enum')
+        msg=''
         
         try:
             
@@ -198,6 +200,8 @@ class ValueChecker:
             column (_type_): _description_
             base (_type_): _description_
         """
+        msg=''
+        
         if not isinstance(nan_values_set_to, NanValues):
             raise TypeError('nan_values_set_to must be an instance of NanValues Enum')
         
@@ -227,6 +231,8 @@ class ValueChecker:
         :param data_frame: Pandas DataFrame
         :return: True if all task complete Successfully, otherwise False
         """
+        msg=''
+        
         try:
             self.dataframe[column] = self.dataframe[column].apply(lambda x: x if x in staticvalues.currency_codes else None)
             
@@ -249,6 +255,8 @@ class ColumnChecker:
         
     def CheckNecessaryColumns(self):
         missing_columns = []
+        msg=''
+        
         for column in self.necessary_columns:
             if column not in list(self.dataframe):
                 missing_columns.append(column)

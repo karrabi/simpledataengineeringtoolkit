@@ -11,6 +11,7 @@ class ColumnCleaner:
         
         
     def RemoveUnnecessaryColumns(self):
+        msg=''
         try:
 
             # determining all unnecessary columns in data and keep them in a list
@@ -45,6 +46,8 @@ class ValueCleaner:
         :param data_frame: Pandas DataFrame to check
         :return: True if all task complete Successfully, otherwise False
         """
+        msg=''
+        
         if keep not in ['first', 'last', False]:
             raise ValueError("keep must be in ['first', 'last', False]")
         try:
@@ -60,6 +63,8 @@ class ValueCleaner:
     
     
     def RemoveNanValues(self, how):
+        msg=''
+        
         if how not in ['any', 'all']:
             raise ValueError("keep must be in ['any', 'all']")
         try:
