@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 from codecs import open
 from os import path
@@ -12,8 +12,8 @@ setup(
     name="simpledataengineeringtoolkit",
     version="0.1.0",
     description="Data Engineers Toolkit library",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description='Data Engineers Toolkit library',
+    long_description_content_type='text/markdown',
     url="https://simpledataengineeringtoolkit.readthedocs.io/",
     author="Ahmad Karrabi",
     author_email="ahmad@karrabi.com",
