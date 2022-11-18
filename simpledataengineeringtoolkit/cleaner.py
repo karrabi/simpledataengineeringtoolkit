@@ -65,7 +65,7 @@ class ValueCleaner:
         try:
             # drop every rows if there is any None value in it.
             self.dataframe.dropna(how=how, inplace=True)
-            msg = 'All Rows with NaN values removed successfully'
+            msg = 'All Rows with NaN values based on how parameter removed successfully'
         except Exception as e:
             msg = 'Error in dropping NaN rows: {}'.format(e)
             return False, msg

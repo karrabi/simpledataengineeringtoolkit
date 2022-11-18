@@ -10,7 +10,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name="simpledataengineeringtoolkit",
-    version="0.1.0",
+    version="0.1.1",
     description="Data Engineers Toolkit library",
     long_description='Data Engineers Toolkit library',
     long_description_content_type='text/markdown',
