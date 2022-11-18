@@ -75,6 +75,19 @@ class ValueCheckerTestCase(unittest.TestCase):
                                      nan_values_set_to=NanValues.DropNan)
         self.assertNotIn(4, list(self.dataframe['intvalues']))
         self.assertNotIn(4, self.dataframe['intvalues'])
+    
+    def test_check_float_values(self):
+        self.dataframe.loc[3,'floatvalues'] = '3a'
+        dfchecker = ValueChecker(dataframe=self.dataframe, reset_index=True)
+        
+        dfchecker.CheckFloatValues(column='floatvalues', 
+                                   change_type_to_float=True,
+                                   remove_thousands_seperator=True,
+                                   nan_values_set_to=NanValues.SetToZero
+                                   )
+        self.assertNotIn(3.0, list(self.dataframe['floatvalues']))
+        
+        
         
     def test_check_unix_timestamp_values_in_s_remove_except_digits(self):
         self.dataframe.loc[4,'timestampvalues'] = '5544a332204'

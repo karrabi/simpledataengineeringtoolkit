@@ -122,6 +122,36 @@ class ValueChecker:
             return None
 
 
+    def CheckFloatValues(self, column:str, change_type_to_float:bool, 
+                              remove_thousands_seperator:bool, 
+                              nan_values_set_to:NanValues):
+        
+        if not isinstance(nan_values_set_to, NanValues):
+            raise TypeError('nan_values_set_to must be an instance of NanValues Enum')
+        
+        try:
+            
+            # self.removeCurrencySeparator(column=column)
+            # self.dataframe[column] = self.dataframe[column].str.replace(',', '')
+            if remove_thousands_seperator:
+                self.dataframe[column] = self.dataframe[column].apply(lambda x: self.__removeThousandsSeparator(str(x)))
+
+            # first, trying to apply pd.to_numeric to desire column. if anything goes wrong then value will set to None
+            self.dataframe[column] = self.dataframe[column].apply(pd.to_numeric, errors='coerce')
+
+            # we need to remove None values for next step, so ...
+            self.__changeNanValues(column=column, nan_values_set_to=nan_values_set_to)
+            
+            # then change column type to int, because it probably is float (pd.to_numeric)
+            if change_type_to_float and nan_values_set_to != NanValues.RemainNan:
+                self.dataframe[column] = self.dataframe[column].astype(float)
+                
+            msg = '{} converted to float successfully'.format(column)
+        except Exception as e:
+            msg = 'Error converting column {} to float : {}'.format(column, e)
+            raise Exception(msg)
+        return True, msg
+
     def CheckIntegerValues(self, column:str, change_type_to_int:bool, 
                               remove:list, 
                               nan_values_set_to:NanValues):
